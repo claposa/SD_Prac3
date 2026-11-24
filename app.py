@@ -59,6 +59,7 @@ def add_to_cart():
         redis_client.hincrby(cart_key, "quantity", 1)
 
         return jsonify({
+            "status": "added",
             "message": "Producto añadido a la cesta",
             "product": redis_client.hgetall(cart_key)
         })
@@ -76,6 +77,7 @@ def checkout():
         redis_client.delete(key)
     
     return jsonify({
+        "status": "completed",
         "message": "Compra completada",
         "products": purchased_items
     })
