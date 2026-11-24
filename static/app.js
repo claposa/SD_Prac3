@@ -61,6 +61,7 @@ function addToCart(productId) {
     .then(result => {
         if (result.status === 'added') {
             loadCart(); // Refresh cart after adding
+            loadProducts();   // Refresh shown stock
             alert('Producto añadido a la cesta');
         } else {
             alert('Error al añadir el producto a la cesta');
@@ -78,6 +79,7 @@ function checkout() {
     .then(result => {
         if (result.status === 'completed') {
             loadCart(); // Clear the cart display
+            loadProducts();   // In case stock changed after sale
             alert('Compra completada con éxito');
         } else {
             alert('Error al realizar la compra');
