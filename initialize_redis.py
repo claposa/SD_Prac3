@@ -85,9 +85,9 @@ if __name__ == "__main__":
         #TODO: Configura la conexión a Redis 
         #redis_client = redis_client es el objeto de conexión a Redis
         redis_client = redis.StrictRedis(
-            host='redis-practica-001.redis-practica.nti8eg.use1.cache.amazonaws.com:6379',
+            host='redis-practica-001.redis-practica.nti8eg.use1.cache.amazonaws.com',
             port=6379,
-            decode_responses=True
+            decode_responses=True,
             ssl=True
         )
 
