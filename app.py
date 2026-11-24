@@ -46,6 +46,11 @@ def add_to_cart():
     product_key = "producto:" + str(product_id)
 
     if redis_client.exists(product_key):
+        new_stock = redis_client.hincrby(product_key, "stock", -1)
+        if new_stock < 0:
+            redis_client.hincrby(product_key, "stock", 1)
+            return jsonify({"error": "Sin stock"}), 400
+        
         product = redis_client.hgetall(product_key)
         cart_key = "cesta:" + str(product_id)
         
